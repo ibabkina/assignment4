@@ -33,7 +33,7 @@ public class CDOffering {
 		CDOffering offering = new CDOffering(Integer.parseInt(args[0]), Double.parseDouble(args[1]));
 		return offering;
 		}
-	
+
 	/**
 	 * @return the term
 	 */

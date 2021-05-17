@@ -2,8 +2,9 @@ package com.meritamerica.assignment4;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 /**
  * This program creates an account for a client.
@@ -18,7 +19,7 @@ public class BankAccount {
 	protected double interestRate; 
 	protected long accountNumber;
 	protected Date accountOpenedOn; // java.util.Date 
-	List<Transaction> transactions;
+	protected ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 	
 	/**
 	 * Default constructor 
@@ -65,7 +66,7 @@ public class BankAccount {
 			throws NumberFormatException, ParseException {
 		String[] args = accountData.split(",");
 		BankAccount acc = new BankAccount(Long.parseLong(args[0]), Double.parseDouble(args[1]), 
-		Double.parseDouble(args[2]), new SimpleDateFormat("MM/dd/yyyy").parse(args[3]));
+		Double.parseDouble(args[2]), new SimpleDateFormat("dd/MM/yyyy").parse(args[3]));
 		System.out.println(acc.toString());
 		return acc;
 	}
@@ -76,6 +77,11 @@ public class BankAccount {
 	public long getAccountNumber() { return accountNumber; }
 	
 	/**
+	 * @param accountNumber the accountNumber to set
+	 */
+	public void setAccountNumber(long accountNumber) { this.accountNumber = accountNumber; }
+	
+	/**
 	 * @return the accountOpenedOn
 	 */
 	public Date getOpenedOn() { return accountOpenedOn; }
@@ -84,6 +90,11 @@ public class BankAccount {
 	 * @return the balance
 	 */
 	public double getBalance() { return balance; }
+	
+	/**
+	 * @param balance the balance to set
+	 */
+	public void setBalance(double balance) { this.balance = balance; }
 
 	/**
 	 * @return the interestRate
@@ -93,22 +104,58 @@ public class BankAccount {
 	/**
 	 * @param amount
 	 * @return boolean: success or fail
+	 * @throws NegativeAmountException 
+	 * @throws ExceedsAvailableBalanceException 
 	 */
-	boolean withdraw(double amount) {
-		if (amount <= 0.0 || amount > balance) {  	// don't forget to check for == 0
+	boolean withdraw(double amount) throws ExceedsFraudSuspicionLimitException { 
+//										NegativeAmountException, 
+//										ExceedsAvailableBalanceException, 						
+		try {
+			if(amount <= 0.0) { throw new NegativeAmountException("Amount must be > $0.00"); } 
+			if (amount > balance) { throw new ExceedsAvailableBalanceException("Widrawal amount > Balance");}
+			
+			balance -= amount;
+		}
+		
+		catch(NegativeAmountException e){ 
+			System.out.println(e); 
 			return false;
 		}
-		balance -= amount;
+		
+		catch(ExceedsAvailableBalanceException e){ 
+			System.out.println(e); 
+			return false;
+		}
+		
+		
+//		
+//		if (amount <= 0.0 || amount > balance) {  	// don't forget to check for == 0
+//			return false;
+//		}
+//		balance -= amount;
 		return true;	
 	}
 	
 	/**
 	 * @param amount
 	 * @return boolean: success or fail
+	 * @throws NegativeAmountException, 
 	 */
-	boolean deposit(double amount) {				// don't forget to check for == 0
-		if (amount <= 0.0) { return false; }
-		balance += amount;
+	boolean deposit(double amount) throws ExceedsFraudSuspicionLimitException { //NegativeAmountException, 
+										
+	// throws NegativeAmountException {				// don't forget to check for == 0	
+		try {
+			if(amount <= 0.0) { throw new NegativeAmountException("Amount must be > $0.00"); } 
+			balance += amount;
+		}
+		
+		catch(NegativeAmountException e){ 
+			System.out.println(e); 
+			return false;
+		}
+		
+//		if (amount <= 0.0) { return false; }
+//		balance += amount;
 		return true;	
 	}
 	
@@ -128,13 +175,9 @@ public class BankAccount {
 //	 */
 //	abstract double futureValue(int years);
 	
-	public void addTransaction(Transaction transaction) {
-		
-	}
+	public void addTransaction(Transaction transaction) { this.transactions.add(transaction); }
 	
-	public List<Transaction> getTransaction() {
-		return this.transactions;
-	}
+	public List<Transaction> getTransactions() { return this.transactions; }
 
 	@Override
 	public String toString() {
@@ -148,6 +191,6 @@ public class BankAccount {
 		return Long.toString(this.getAccountNumber()) + "," 
 				+ String.format("%.0f", this.getBalance()) + ","
 				+ String.format("%.4f", this.getInterestRate()) + ","
-				+ new SimpleDateFormat("MM/dd/yyyy").format(this.accountOpenedOn);	
+				+ new SimpleDateFormat("dd/MM/yyyy").format(this.accountOpenedOn);	
 	}
 }	

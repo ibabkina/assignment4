@@ -218,7 +218,7 @@ public class SolutionTest {
         	"Sadiq",
         	"",
         	"Manji",
-        	"123456789");
+        	"123456789");       
         
         CDAccount cdAccount = accountHolder.addCDAccount(new CDOffering(5, 0.03), 10000);
 
@@ -403,7 +403,8 @@ public class SolutionTest {
     	CheckingAccount checkingAccount = accountHolder.addCheckingAccount(5000);
     	
     	WithdrawTransaction withdrawTransaction = new WithdrawTransaction(checkingAccount, 2000);
-    	MeritBank.processTransaction(withdrawTransaction);
+    	MeritBank.processTransaction(withdrawTransaction);  
+   
     }   
     
     @Test
@@ -420,10 +421,44 @@ public class SolutionTest {
         SavingsAccount savingsAccount = accountHolder.addSavingsAccount(100);
     	
         TransferTransaction transferTransaction = new TransferTransaction(checkingAccount, savingsAccount, 200);
-    	MeritBank.processTransaction(transferTransaction);
-    	
+        MeritBank.processTransaction(transferTransaction);
+        
         assertEquals(300, checkingAccount.getBalance(), 0);
         assertEquals(300, savingsAccount.getBalance(), 0);
+    	
+    }  
+    
+    @Test
+    public void testProcessWithdrawTransactionSuccessfully() throws Exception {   
+    	
+    	AccountHolder accountHolder = new AccountHolder(
+            	"Sadiq",
+            	"",
+            	"Manji",
+            	"123456789");
+    	
+    	CheckingAccount checkingAccount = accountHolder.addCheckingAccount(500);
+    	
+//    	for(CheckingAccount acc : accountHolder.getCheckingAccounts()){
+//			System.out.println(acc.getAccountNumber());
+//			
+//		}
+    	
+//        SavingsAccount savingsAccount = accountHolder.addSavingsAccount(100);
+    	
+        WithdrawTransaction withdrawTransaction = new WithdrawTransaction(checkingAccount, 100);
+//        System.out.println("Here in test case testProcessWithdrawTransactionSuccessfully() ");  //+ transferTransaction.toString());  // added by Irina
+//    	System.out.println("Transfer Transaction to String: " + transferTransaction.toString());  // added by Irina
+//      System.out.println("CheckingAccounts is: " + accountHolder.getCheckingAccounts()[0]);
+//      System.out.println("SavingsAccounts is: " + accountHolder.getSavingsAccounts()[0]);
+
+        MeritBank.processTransaction(withdrawTransaction);
+        
+//    	System.out.println("Checking balance = " + checkingAccount.getBalance());
+//    	System.out.println("Savings balance = " + savingsAccount.getBalance());
+//    	System.out.println("Transfer Transaction to String: " + transferTransaction.toString());  // added by Irina
+        assertEquals(400, checkingAccount.getBalance(), 0);
+//        assertEquals(300, savingsAccount.getBalance(), 0);
     	
     }  
 }

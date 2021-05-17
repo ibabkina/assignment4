@@ -3,7 +3,7 @@
  */
 package com.meritamerica.assignment4;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author irinababkina
@@ -11,46 +11,42 @@ import java.util.List;
  */
 public class FraudQueue {
 	
-	Transaction transaction; // list?
-	List Transactions; 
+//	Transaction transaction; 
+	ArrayList<Transaction> transactions; // = new ArrayList<Transaction>(); 
 
-	/**
-	 * 
-	 */
+//	/**
+//	 * Default constructor
+//	 */
+//	public FraudQueue() {}
+	
 	public FraudQueue() {
-		// TODO Auto-generated constructor stub
+	transactions = new ArrayList<Transaction>(); 
 	}
+	
+//	public FraudQueue(Transaction transaction) { this.transaction = transaction; }
 
-	public void addTransaction(Transaction transaction) {
-		
-	}
+	public void addTransaction(Transaction transaction) { this.transactions.add(transaction); }
+	
+	/**
+	 * @return the transactions
+	 */
+	public ArrayList<Transaction> getTransactions() { return this.transactions; }
 
 	/**
 	 * @return the transaction
 	 */
-	public Transaction getTransaction() {
-		return transaction;
-	}
+	public Transaction getTransaction() { return this.transactions.get(transactions.size()-1); }
 
 	/**
 	 * @param transaction the transaction to set
 	 */
-	public void setTransaction(Transaction transaction) {
-		this.transaction = transaction;
-	}
+//	public void setTransaction(Transaction transaction) { this.transaction = transaction; }	
 
-	/**
-	 * @return the transactions
-	 */
-	public List getTransactions() {
-		return Transactions;
-	}
-
-	/**
-	 * @param transactions the transactions to set
-	 */
-	public void setTransactions(List transactions) {
-		Transactions = transactions;
-	}
+//	/**
+//	 * @param transactions the transactions to set
+//	 */
+//	public void setTransactions(List transactions) {
+//		Transactions = transactions;
+//	}
 	
 }

@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 
 public class CheckingAccount extends BankAccount {
 	
-//	private double interestRate = 0.0001;
+	//private double interestRate = 0.0001;
 	
 	/**
 	 * Default constructor 
@@ -49,7 +49,7 @@ public class CheckingAccount extends BankAccount {
 			throws NumberFormatException, ParseException {
 		String[] args = accountData.split(",");
 		CheckingAccount acc = new CheckingAccount(Long.parseLong(args[0]), Double.parseDouble(args[1]), 
-		Double.parseDouble(args[2]), new SimpleDateFormat("MM/dd/yyyy").parse(args[3]));
+		Double.parseDouble(args[2]), new SimpleDateFormat("dd/MM/yyyy").parse(args[3]));
 		return acc;
 		}
 	

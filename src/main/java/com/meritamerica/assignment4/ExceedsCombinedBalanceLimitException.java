@@ -7,19 +7,19 @@ package com.meritamerica.assignment4;
  * @author irinababkina
  *
  */
-public class ExceedsCombinedLimitException extends Exception {
+public class ExceedsCombinedBalanceLimitException extends Exception {
 
 	/**
 	 * 
 	 */
-	public ExceedsCombinedLimitException() {
+	public ExceedsCombinedBalanceLimitException() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @param message
 	 */
-	public ExceedsCombinedLimitException(String message) {
+	public ExceedsCombinedBalanceLimitException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
@@ -27,7 +27,7 @@ public class ExceedsCombinedLimitException extends Exception {
 	/**
 	 * @param cause
 	 */
-	public ExceedsCombinedLimitException(Throwable cause) {
+	public ExceedsCombinedBalanceLimitException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
@@ -36,7 +36,7 @@ public class ExceedsCombinedLimitException extends Exception {
 	 * @param message
 	 * @param cause
 	 */
-	public ExceedsCombinedLimitException(String message, Throwable cause) {
+	public ExceedsCombinedBalanceLimitException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
@@ -47,7 +47,7 @@ public class ExceedsCombinedLimitException extends Exception {
 	 * @param enableSuppression
 	 * @param writableStackTrace
 	 */
-	public ExceedsCombinedLimitException(String message, Throwable cause, boolean enableSuppression,
+	public ExceedsCombinedBalanceLimitException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub

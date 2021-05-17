@@ -53,10 +53,14 @@ public class CDAccount extends BankAccount{
 	}
 	
 	@Override
-	public boolean deposit(double amount) { return false; }
+	public boolean deposit(double amount) throws ExceedsFraudSuspicionLimitException { 
+		throw new ExceedsFraudSuspicionLimitException("You cannot deposit to CD Account");
+		}
 	
 	@Override
-	public boolean withdraw(double amount) { return false; }
+	public boolean withdraw(double amount) throws ExceedsFraudSuspicionLimitException { 
+		throw new ExceedsFraudSuspicionLimitException("You cannot withdraw from CD Account");
+	}
 	
 	/**
 	 * @return the interestRate
@@ -101,7 +105,7 @@ public class CDAccount extends BankAccount{
 		return Long.toString(this.getAccountNumber()) + "," 
 				+ String.format("%.0f", this.getBalance()) + ","
 				+ String.format("%.3f", this.getInterestRate()) + ","
-				+ new SimpleDateFormat("MM/dd/yyyy").format(this.accountOpenedOn) + ","
+				+ new SimpleDateFormat("dd/MM/yyyy").format(this.accountOpenedOn) + ","
 				+ Integer.toString(this.term);
 	}
 }
