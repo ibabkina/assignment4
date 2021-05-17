@@ -20,6 +20,7 @@ public class AccountHolder implements Comparable<AccountHolder> {
 	private CheckingAccount[] checkingAccounts = new CheckingAccount[0]; 
 	private SavingsAccount[] savingsAccounts = new SavingsAccount[0];
 	private CDAccount[] cdAccounts = new CDAccount[0]; 
+	private static final double MAX_TRANSACTION_AMOUNT = 1000;
 
 	/**
 	 * Default constructor 
@@ -233,11 +234,16 @@ public class AccountHolder implements Comparable<AccountHolder> {
 	 * @param offering
 	 * @return the CDAccount
 	 */
-	CDAccount addCDAccount(CDOffering offering, double openingBalance) {
+	CDAccount addCDAccount(CDOffering offering, double openingBalance) throws ExceedsFraudSuspicionLimitException { 
 		if (offering == null) { // || MeritBank.cdOfferings.length <= 0 ) { 
 			System.out.println("The CD account could not be created! No CD offerings are available.");
 			return null;
 			}
+
+		if (openingBalance > MAX_TRANSACTION_AMOUNT) {
+			throw new ExceedsFraudSuspicionLimitException("You cannot deposit > $1000 to CD Account"); 
+		}
+	
 		return addCDAccount(new CDAccount(offering, openingBalance)); 
 	}
 	
