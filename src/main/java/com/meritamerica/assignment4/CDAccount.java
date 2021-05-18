@@ -12,7 +12,6 @@ import java.util.Date;
  * 
  */
 
-
 public class CDAccount extends BankAccount{
 	
 	private int term;
@@ -105,7 +104,7 @@ public class CDAccount extends BankAccount{
 		return Long.toString(this.getAccountNumber()) + "," 
 				+ String.format("%.0f", this.getBalance()) + ","
 				+ String.format("%.3f", this.getInterestRate()) + ","
-				+ new SimpleDateFormat("dd/MM/yyyy").format(this.accountOpenedOn) + ","
+				+ new SimpleDateFormat("MM/dd/yyyy").format(this.accountOpenedOn) + ","
 				+ Integer.toString(this.term);
 	}
 }

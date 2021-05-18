@@ -17,8 +17,12 @@ public class WithdrawTransaction extends Transaction {
 	 */
 	public WithdrawTransaction() { super(); }
 	
-	public WithdrawTransaction(long sourceAccNum, long targetAccNum, Double amount, Date transDate, boolean isProcessed) {
-		super(sourceAccNum, targetAccNum, amount, transDate, isProcessed);
+//	public WithdrawTransaction(long sourceAccNum, long targetAccNum, Double amount, Date transDate, boolean isProcessed) {
+//		super(sourceAccNum, targetAccNum, amount, transDate, isProcessed);
+//	}
+	
+	public WithdrawTransaction(long sourceNum, long targetNum, Double amount, Date transDate) {
+		super(sourceNum, targetNum, amount, transDate);
 	}
 
 	/**
@@ -34,35 +38,15 @@ public class WithdrawTransaction extends Transaction {
 								ExceedsAvailableBalanceException, 
 								ExceedsFraudSuspicionLimitException {
 	
-//	 	try {
-
-		boolean isProcessed = false;
-		
-
-//		System.out.println("This is = " + this);
-//		long accN = this.sourceAccount.getAccountNumber();
-//		System.out.println("Source AccNum = " + accN);
-//		System.out.println("The Source Account is: " + this.getSourceAccount());
-		
-		isProcessed = this.getTargetAccount().withdraw(this.getAmount()); 
-//		System.out.println("WithdrawIsProcessed = " + WithdrawIsProcessed);
-		
-		if(isProcessed) {
-			setIsProcessed(true);
-//			System.out.println("Transfer Is Processed = " + getIsProcessed());
-//			this.getSourceAccount().addTransaction(this);
-			this.getTargetAccount().addTransaction(this);
-//			List<Transaction> ls = this.getSourceAccount().getTransactions();
-//			for(Transaction t : ls) {
-//				System.out.println(t);
-//			}
-//			ls = this.getTargetAccount().getTransactions();
-//			for(Transaction t : ls) {
-//				System.out.println(t);
-//			}
-		}	
+//		boolean isProcessed = false;
+//		isProcessed = this.getTargetAccount().withdraw(this.getAmount()); 
+//		if(isProcessed) {
+//			setIsProcessed(true);
+//			this.getTargetAccount().addTransaction(this);
 //		}
-//		catch(NegativeAmountException e){ System.out.println(e); }
-//		catch(ExceedsAvailableBalanceException e){ System.out.println(e); }	
+		
+		if(this.getTargetAccount().withdraw(this.getAmount()) == true) { 	
+			this.getTargetAccount().addTransaction(this);
+		}	
 	}
 }

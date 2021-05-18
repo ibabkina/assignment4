@@ -4,7 +4,6 @@
 package com.meritamerica.assignment4;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author irinababkina
@@ -17,10 +16,20 @@ public class DepositTransaction extends Transaction {
 	 */
 	public DepositTransaction() { super(); }
 	
+	/**
+	 * @param sourceAccNum
+	 * @param targetAccNum
+	 * @param amount
+	 * @param transDate
+	 * @param isProcessed
+	 */
+//	public DepositTransaction(long sourceAccNum, long targetAccNum, Double amount, Date transDate, boolean isProcessed) {
+//		super(sourceAccNum, targetAccNum, amount, transDate, isProcessed);
+//	}
 	
-	public DepositTransaction(long sourceAccNum, long targetAccNum, Double amount, Date transDate, boolean isProcessed) {
-		super(sourceAccNum, targetAccNum, amount, transDate, isProcessed);
-	}				
+	public DepositTransaction(long sourceNum, long targetNum, Double amount, Date transDate) {
+		super(sourceNum, targetNum, amount, transDate);
+	}
 		
 	/**
 	 * @param targetAccount
@@ -34,36 +43,14 @@ public class DepositTransaction extends Transaction {
 								ExceedsAvailableBalanceException, 
 								ExceedsFraudSuspicionLimitException {
 		
-//		try {
-		boolean isProcessed = false;
-		
-
-//		System.out.println("This is = " + this);
-//		long accN = this.sourceAccount.getAccountNumber();
-//		System.out.println("Source AccNum = " + accN);
-//		System.out.println("The Source Account is: " + this.getSourceAccount());
-		
-		isProcessed = this.getTargetAccount().deposit(this.getAmount()); 
-//		System.out.println("WithdrawIsProcessed = " + WithdrawIsProcessed);
-//		System.out.println("DepositIsProcessed = " + DepositIsProcessed);
-		
-		if(isProcessed) {
-			setIsProcessed(true);
+//		try {		
+		if(this.getTargetAccount().deposit(this.getAmount()) == true) { 	
 			this.getTargetAccount().addTransaction(this);
-//			List<Transaction> ls = this.getSourceAccount().getTransactions();
-//			for(Transaction t : ls) {
-//				System.out.println(t);
-//			}
-//			ls = this.getTargetAccount().getTransactions();
-//			for(Transaction t : ls) {
-//				System.out.println(t);
-//			}
+
 		}	
-//		
-//		catch(NegativeAmountException e){ System.out.println(e); }
 		
-//		catch(ExceedsAvailableBalanceException e){ System.out.println(e); }
-//		
+//		catch(NegativeAmountException e){ System.out.println(e); }		
+//		catch(ExceedsAvailableBalanceException e){ System.out.println(e); }		
 //		catch(ExceedsFraudSuspicionLimitException e){ System.out.println(e); }
 		
 	}

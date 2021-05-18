@@ -49,7 +49,7 @@ public class CheckingAccount extends BankAccount {
 			throws NumberFormatException, ParseException {
 		String[] args = accountData.split(",");
 		CheckingAccount acc = new CheckingAccount(Long.parseLong(args[0]), Double.parseDouble(args[1]), 
-		Double.parseDouble(args[2]), new SimpleDateFormat("dd/MM/yyyy").parse(args[3]));
+		Double.parseDouble(args[2]), new SimpleDateFormat("MM/dd/yyyy").parse(args[3]));
 		return acc;
 		}
 	
@@ -71,6 +71,7 @@ public class CheckingAccount extends BankAccount {
 		return "\nChecking Account Number: " + this.getAccountNumber()
 			+ "\nChecking Account Balance: $" + String.format("%.2f", this.getBalance())
 			+ "\nChecking Account Interest Rate: " + String.format("%.4f", this.getInterestRate())
-			+ "\nChecking Account Balance in 3 years: " + String.format("%.2f", this.futureValue(3));
+			+ "\nChecking Account Balance in 3 years: " + String.format("%.2f", this.futureValue(3))
+			+ "\nChecking Account Opened Date " + this.getOpenedOn();
 	}
 }

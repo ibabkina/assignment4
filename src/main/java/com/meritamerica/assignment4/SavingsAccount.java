@@ -49,7 +49,7 @@ public class SavingsAccount extends BankAccount {
 			throws NumberFormatException, ParseException {
 		String[] args = accountData.split(",");
 		SavingsAccount acc = new SavingsAccount(Long.parseLong(args[0]), Double.parseDouble(args[1]), 
-		Double.parseDouble(args[2]), new SimpleDateFormat("dd/MM/yyyy").parse(args[3]));
+		Double.parseDouble(args[2]), new SimpleDateFormat("MM/dd/yyyy").parse(args[3]));
 		return acc;
 	}
 	
@@ -71,7 +71,8 @@ public class SavingsAccount extends BankAccount {
 		return "\nSavings Account Number: " + this.getAccountNumber()
 			+ "\nSavings Account Balance: $" + String.format("%.2f", this.getBalance())
 			+ "\nSavings Account Interest Rate: " + String.format("%.4f", this.getInterestRate())
-			+ "\nSavings Account Balance in 3 years: " + String.format("%.2f", this.futureValue(3));
+			+ "\nSavings Account Balance in 3 years: " + String.format("%.2f", this.futureValue(3))
+			+ "\nSavings Account Opened Date " + this.getOpenedOn();
 	}	
 	
 	@Override
@@ -79,6 +80,6 @@ public class SavingsAccount extends BankAccount {
 		return Long.toString(this.getAccountNumber()) + "," 
 				+ String.format("%.0f", this.getBalance()) + ","
 				+ String.format("%.2f", this.getInterestRate()) + ","
-				+ new SimpleDateFormat("dd/MM/yyyy").format(this.accountOpenedOn);	
+				+ new SimpleDateFormat("MM/dd/yyyy").format(this.accountOpenedOn);	
 	}
 }

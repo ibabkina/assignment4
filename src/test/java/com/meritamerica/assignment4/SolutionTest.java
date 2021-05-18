@@ -284,7 +284,7 @@ public class SolutionTest {
     
     @Test
     public void testSuccessfulReadSavingsAccountFromString() throws ParseException{
-    	SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+    	SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
     	Date date = dateFormatter.parse("01/02/2020");
     	
         SavingsAccount savingsAccount = SavingsAccount.readFromString("83,10000,0.02,01/02/2020");

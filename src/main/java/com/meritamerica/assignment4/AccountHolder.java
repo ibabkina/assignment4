@@ -96,7 +96,6 @@ public class AccountHolder implements Comparable<AccountHolder> {
 	 * @return the CheckingAccount
 	 */
 	public CheckingAccount addCheckingAccount(double openingBalance) {
-//			throws ExceedsCombinedLimitException { 
 		return addCheckingAccount(new CheckingAccount(openingBalance)); 
 	}
 	
@@ -106,7 +105,6 @@ public class AccountHolder implements Comparable<AccountHolder> {
 	 * @return the CheckingAccount
 	 */
 	public CheckingAccount addCheckingAccount(CheckingAccount checkingAccount) {
-//			throws ExceedsCombinedBalanceLimitException 
 		try {
 			double sum = this.getCheckingBalance() + this.getSavingsBalance(); 
 			sum += checkingAccount.getBalance();
@@ -115,12 +113,7 @@ public class AccountHolder implements Comparable<AccountHolder> {
 				throw new ExceedsCombinedBalanceLimitException(
 						"You cannot add a checking account at this time. "
 						+ "\nPlease wait until combined balance is under 250k!"); 
-				//			System.out.println("You combined balance would be: " + sum);				
-				//			System.out.println("Please wait until combined balance is under 250k!");
-				//			return null;
 			}
-			
-			checkingAccount.addTransaction(new DepositTransaction(checkingAccount, checkingAccount.getBalance()));
 			
 			CheckingAccount[] temp = new CheckingAccount[checkingAccounts.length + 1];
 			for (int i = 0 ; i < checkingAccounts.length; i++) {
@@ -164,7 +157,6 @@ public class AccountHolder implements Comparable<AccountHolder> {
 	 * @return the SavingsAccount
 	 */
 	SavingsAccount addSavingsAccount(double openingBalance) {
-//			throws ExceedsCombinedLimitException {
 		return addSavingsAccount(new SavingsAccount(openingBalance)); 
 	}
 	
@@ -181,12 +173,7 @@ public class AccountHolder implements Comparable<AccountHolder> {
 				throw new ExceedsCombinedBalanceLimitException(
 						"You cannot add a checking account at this time. "
 						+ "\nPlease wait until combined balance is under 250k!"); 
-				//			System.out.println("You combined balance would be: " + sum);				
-				//			System.out.println("Please wait until combined balance is under 250k!");
-				//			return null;
 			}
-			
-			savingsAccount.addTransaction(new DepositTransaction(savingsAccount, savingsAccount.getBalance()));
 			
 			SavingsAccount[] temp = new SavingsAccount[savingsAccounts.length + 1];
 			for (int i = 0 ; i < savingsAccounts.length; i++) {
@@ -252,7 +239,6 @@ public class AccountHolder implements Comparable<AccountHolder> {
 	 * @return the cdAccount
 	 */
 	CDAccount addCDAccount(CDAccount cdAccount) {
-		cdAccount.addTransaction(new DepositTransaction(cdAccount, cdAccount.getBalance()));
 		CDAccount[] temp = new CDAccount[cdAccounts.length + 1];
 		for (int i = 0 ; i < cdAccounts.length; i++) {
 			temp[i] = cdAccounts[i];
